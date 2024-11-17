@@ -1,4 +1,4 @@
-package com.example.dev2dev.data.dtoUser
+package com.example.dev2dev.data.api.dtoUser
 
 import com.google.gson.annotations.SerializedName
 

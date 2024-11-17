@@ -35,6 +35,7 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.dev2dev.R
+import com.example.dev2dev.ui.presentation.LoginViewModel
 import com.example.dev2dev.ui.presentation.component.HeaderContent
 import com.example.dev2dev.ui.presentation.component.LoginTextField
 import com.example.dev2dev.ui.theme.Dev2DevTheme
@@ -44,9 +45,11 @@ val itemSpacing = 8.dp
 
 @Composable
 fun LoginScreen(
+    loginViewModel: LoginViewModel,
     onLoginClick:() -> Unit ,
-    onSignUpClick: () -> Unit
+    onSignUpClick: () -> Unit ,
 ) {
+
 
     val (userName , setUsername) = rememberSaveable {
         mutableStateOf("")
@@ -87,6 +90,7 @@ fun LoginScreen(
             )
         Spacer(modifier = Modifier.height(itemSpacing))
 
+
         LoginTextField(
             value = password,
             onValueChange = setPassword,
@@ -119,7 +123,7 @@ fun LoginScreen(
         Button(
             onClick = onLoginClick ,
             modifier = Modifier.fillMaxWidth(),
-            enabled = isFieldsEmpty
+            enabled = isFieldsEmpty,
         ) {
             Text(text = "Login")
         }
@@ -203,7 +207,7 @@ fun AlternativeLoginOptions(
 fun PrewLogInScreen() {
 
   Dev2DevTheme {
-      LoginScreen({},{})
+      LoginScreen({},{},{})
   }
 
 }
