@@ -29,7 +29,8 @@ object ApiModule {
     fun providesOkHttpKlient(httpLogingInterceptor: HttpLoggingInterceptor) =
         OkHttpClient.Builder()
             .addInterceptor(httpLogingInterceptor)
-            .build()
+            .build()  // гдето-тут добавить токен
+
     @Singleton
     @Provides
     fun providesRetrofit(okHttpClient: OkHttpClient) =
@@ -38,6 +39,7 @@ object ApiModule {
             .addConverterFactory(GsonConverterFactory.create())
             .client(okHttpClient)
             .build()
+
     @Singleton
     @Provides
     fun providesILogSingApiService(retrofit: Retrofit) = retrofit.create(ILogSingApiService::class.java)

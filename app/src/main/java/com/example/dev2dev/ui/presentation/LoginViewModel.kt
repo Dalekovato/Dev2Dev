@@ -1,9 +1,9 @@
 package com.example.dev2dev.ui.presentation
 
-import android.util.Log
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.dev2dev.data.api.dtoUser.User
+import com.example.dev2dev.data.api.dtoUser.AuthUser
 import com.example.dev2dev.domain.usecases.SingInUseCase
 import com.example.dev2dev.domain.usecases.SingUpUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -16,22 +16,19 @@ class LoginViewModel @Inject constructor(
     private val singInUseCases: SingInUseCase,
 ):ViewModel() {
 
-       // private val _singUp = MutableLiveData<NetworkResult<ApiToken>>()  а зачем ?
 
-    init {
 
-    }
-
-    fun singUp(){
+    fun singUp(email: String, password: String){
         viewModelScope.launch {
-            singUpUseCase.invoke(User(email = "", password = ""))
+            singUpUseCase.invoke(AuthUser(email = email, password = password))
         }
     }
 
-    fun singIn(){
+    fun singIn(email: String , password: String){
         viewModelScope.launch {
-            singInUseCases.invoke(User(email = "", password = ""))
+            singInUseCases.invoke(AuthUser(email = email, password = password))
         }
     }
+
 
 }

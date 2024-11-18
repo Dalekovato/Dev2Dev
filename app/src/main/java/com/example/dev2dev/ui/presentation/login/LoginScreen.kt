@@ -45,7 +45,7 @@ val itemSpacing = 8.dp
 
 @Composable
 fun LoginScreen(
-    loginViewModel: LoginViewModel,
+//    loginViewModel: LoginViewModel,
     onLoginClick:() -> Unit ,
     onSignUpClick: () -> Unit ,
 ) {
@@ -207,7 +207,7 @@ fun AlternativeLoginOptions(
 fun PrewLogInScreen() {
 
   Dev2DevTheme {
-      LoginScreen({},{},{})
+      LoginScreen({},{})
   }
 
 }
