@@ -1,6 +1,5 @@
 package com.example.dev2dev.ui.presentation
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.dev2dev.data.api.dtoUser.AuthUser
@@ -11,7 +10,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class LoginViewModel @Inject constructor(
+class AuthViewModel @Inject constructor(
     private val singUpUseCase: SingUpUseCase,
     private val singInUseCases: SingInUseCase,
 ):ViewModel() {

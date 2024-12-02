@@ -11,7 +11,6 @@ class GeneralRepository @Inject constructor(
 
     private val logSingInApiRepository: LogSingInApiRepository ,
 
-
 ): BaseApiResponse() {
 
     suspend fun singUp(user: AuthUser): NetworkResult<ApiToken> {
