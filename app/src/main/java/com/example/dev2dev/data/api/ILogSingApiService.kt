@@ -5,6 +5,7 @@ import com.example.dev2dev.data.api.dtoUser.AuthUser
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.POST
+import retrofit2.http.Query
 
 interface ILogSingApiService {
 
@@ -19,6 +20,9 @@ interface ILogSingApiService {
 
     @POST("/auth/logout")//Выход из учетки
     suspend fun logOut()
+
+
+
 
 }
 

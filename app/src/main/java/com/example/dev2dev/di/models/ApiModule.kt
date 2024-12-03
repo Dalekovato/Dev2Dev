@@ -1,9 +1,19 @@
 package com.example.dev2dev.di.models
 
+import android.content.Context
+import androidx.datastore.core.DataStore
+import androidx.datastore.core.handlers.ReplaceFileCorruptionHandler
+import androidx.datastore.preferences.core.PreferenceDataStoreFactory
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.core.emptyPreferences
+import androidx.datastore.preferences.preferencesDataStoreFile
+import com.example.dev2dev.data.Jwt.JwtTokenDataStore
+import com.example.dev2dev.data.Jwt.JwtTokenManager
 import com.example.dev2dev.data.api.ILogSingApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -43,5 +53,8 @@ object ApiModule {
     @Singleton
     @Provides
     fun providesILogSingApiService(retrofit: Retrofit) = retrofit.create(ILogSingApiService::class.java)
+
+
+
 
 }
