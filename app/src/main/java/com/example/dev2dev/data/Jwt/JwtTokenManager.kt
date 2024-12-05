@@ -1,5 +1,6 @@
 package com.example.dev2dev.data.Jwt
 
+import com.example.dev2dev.data.api.dtoUser.ApiToken
 
 interface JwtTokenManager {
 
