@@ -2,9 +2,12 @@ package com.example.dev2dev.ui.presentation.auth
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.navigation.Navigation
+import com.example.dev2dev.data.Jwt.LocalTokenRepository
 import com.example.dev2dev.data.api.dtoUser.ApiToken
 import com.example.dev2dev.data.api.dtoUser.AuthUser
-import com.example.dev2dev.domain.interactor.AuthInteractorImpl
+import com.example.dev2dev.domain.interactor.IAuthRepository
+import com.example.dev2dev.ui.presentation.HomeScreen
 import com.example.dev2dev.utils.NetworkResult
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -12,50 +15,44 @@ import javax.inject.Inject
 
 @HiltViewModel
 class AuthViewModel @Inject constructor(
-    private val authInteractorImpl: AuthInteractorImpl,
+    private val authInteractor: IAuthRepository,
+    private val localTokenRepository: LocalTokenRepository
 ):ViewModel() {
 
 
+//Тут забацать состояние
 
     fun singUp(email: String, password: String){
 
         viewModelScope.launch {
-            authInteractorImpl.singUn(AuthUser(email = email, password = password))
+            val result = authInteractor.singUn(AuthUser(email = email, password = password))
+// Тут его обработать
+
+//            when(result){
+//                is NetworkResult.Success -> {
+//
+//                }
+//                is NetworkResult.Error->{
+//
+//                }
+//                is NetworkResult.Loading->{
+//
+//                }
+//            }
         }
 
     }
 
     fun singIn(email: String , password: String){
         viewModelScope.launch {
-            authInteractorImpl.singIn(AuthUser(email = email, password = password))
+            authInteractor.singIn(AuthUser(email = email, password = password))
         }
     }
 
-    fun saveToken(token: ApiToken){
-        viewModelScope.launch {
-            authInteractorImpl.saveToken(token)
-        }
-    }
 
-    fun getAccessToken():String{
-        val accessToken = viewModelScope.launch {
-             authInteractorImpl.getAccessToken()
-        }
-        return accessToken.toString()
-    }
+    fun getRefreshToken() = localTokenRepository.getRefreshToken()
 
-     fun getRefreshToken():String{
-         val refreshToken = viewModelScope.launch {
-             authInteractorImpl.getRefreshToken()
-         }
-         return refreshToken.toString()
+    fun getAccessToken() = localTokenRepository.getAccessToken()
 
-    }
-
-    fun clearToken(){
-        viewModelScope.launch {
-        authInteractorImpl.clearToken()
-        }
-    }
 
 }

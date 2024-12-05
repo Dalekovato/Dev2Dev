@@ -33,6 +33,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.dev2dev.ui.presentation.auth.AuthViewModel
 import com.example.dev2dev.ui.presentation.component.HeaderContent
@@ -46,8 +47,9 @@ fun SingUpScreen(
     onLoginClick: () -> Unit,
     onPolicyClick: () -> Unit,
     onPrivacyClick: () -> Unit,
-   // authViewModel: AuthViewModel = viewModel(),
+
 ) {
+    val authViewModel: AuthViewModel = hiltViewModel()
 
     val (firstName, onFirstNameChange) = rememberSaveable {
         mutableStateOf("")
@@ -186,8 +188,8 @@ fun SingUpScreen(
             onClick = {
                 isPasswordSame = password != confirmPassword
                 if(!isPasswordSame){
-                  //  authViewModel.singUp(email,password)
-                    onSingUpClick()
+                    authViewModel.singUp(email,password)
+                   // onSingUpClick()
                 }
             },
             modifier = Modifier.fillMaxWidth(),

@@ -23,6 +23,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
@@ -34,12 +35,16 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.dev2dev.R
 import com.example.dev2dev.ui.presentation.auth.AuthViewModel
 import com.example.dev2dev.ui.presentation.component.HeaderContent
 import com.example.dev2dev.ui.presentation.component.LoginTextField
 import com.example.dev2dev.ui.theme.Dev2DevTheme
+import com.example.dev2dev.utils.BaseApiResponse
+import com.example.dev2dev.utils.NetworkResult
+import javax.annotation.meta.When
 
 val defaultPadding = 16.dp
 val itemSpacing = 8.dp
@@ -48,8 +53,9 @@ val itemSpacing = 8.dp
 fun LoginScreen(
     onLoginClick: () -> Unit,
     onSignUpClick: () -> Unit,
-    authViewModel: AuthViewModel = viewModel(),
 ) {
+
+    val authViewModel: AuthViewModel = hiltViewModel()
 
     val (userName , setUsername) = rememberSaveable {
         mutableStateOf("")
@@ -120,10 +126,12 @@ fun LoginScreen(
 
         Spacer(modifier = Modifier.height(itemSpacing))
 
+
         Button(
             onClick = {
-                //authViewModel.singIn(userName,password)
-                onLoginClick
+                    authViewModel.singIn(userName,password)
+                authViewModel.singIn(userName,password)
+                //onLoginClick
                       },
             modifier = Modifier.fillMaxWidth(),
             enabled = isFieldsEmpty,
