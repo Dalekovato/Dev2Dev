@@ -24,6 +24,8 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
@@ -36,15 +38,12 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.dev2dev.R
 import com.example.dev2dev.ui.presentation.auth.AuthViewModel
 import com.example.dev2dev.ui.presentation.component.HeaderContent
 import com.example.dev2dev.ui.presentation.component.LoginTextField
 import com.example.dev2dev.ui.theme.Dev2DevTheme
-import com.example.dev2dev.utils.BaseApiResponse
 import com.example.dev2dev.utils.NetworkResult
-import javax.annotation.meta.When
 
 val defaultPadding = 16.dp
 val itemSpacing = 8.dp
@@ -58,10 +57,10 @@ fun LoginScreen(
     val authViewModel: AuthViewModel = hiltViewModel()
 
     val (userName , setUsername) = rememberSaveable {
-        mutableStateOf("")
+        mutableStateOf("zdarovaZaebal@mail.com")
     }
     val (password , setPassword) = rememberSaveable {
-        mutableStateOf("")
+        mutableStateOf("123")
     }
     val (checked , onCheckedChange) = rememberSaveable {
         mutableStateOf(false)
@@ -127,11 +126,32 @@ fun LoginScreen(
         Spacer(modifier = Modifier.height(itemSpacing))
 
 
+        val loginResult by authViewModel.loginResult.observeAsState()
+        LaunchedEffect(loginResult) {
+            when(loginResult){
+                is NetworkResult.Success ->{
+                    // Перенаправляем на домашнюю страницу
+                    onLoginClick()
+                }
+                is NetworkResult.Error ->{
+                    //Сделать диалоговое окно ошибки
+                    Toast.makeText(context,"Incorrect login or password",Toast.LENGTH_SHORT).show()
+                }
+                is NetworkResult.Loading ->{
+                    //Сделать экран загрузки
+                }
+                else -> {
+                    //Сделать экран ошибки системмы
+                }
+            }
+
+        }
+
         Button(
             onClick = {
-                    authViewModel.singIn(userName,password)
-                authViewModel.singIn(userName,password)
-                //onLoginClick
+                onLoginClick()
+                authViewModel.logIn(userName,password)
+
                       },
             modifier = Modifier.fillMaxWidth(),
             enabled = isFieldsEmpty,

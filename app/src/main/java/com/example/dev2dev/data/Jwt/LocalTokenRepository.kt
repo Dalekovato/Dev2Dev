@@ -1,20 +1,28 @@
 package com.example.dev2dev.data.Jwt
 
-class LocalTokenRepository {
+import android.util.Log
+import javax.inject.Inject
 
-    var refreshToken : String = ""
-    var accessToken : String = ""
+class LocalTokenRepository @Inject constructor() {
+
+    var JwtrefreshToken : String = ""
+    var JwtaccessToken : String = ""
 
     fun setRefreshToken(refreshToken : String){
-        this.refreshToken = refreshToken
+        this.JwtrefreshToken = refreshToken
+        Log.d("TokenTUTUTUTU", "${refreshToken}")
+
     }
 
-    fun setRAccessToken(accessToken : String){
-        this.accessToken = accessToken
+    fun setAccessToken(accessToken : String){
+        this.JwtaccessToken = accessToken
+
     }
 
-    fun getRefreshToken(): String = refreshToken
+    fun getRefreshToken():String = JwtrefreshToken
 
-    fun getAccessToken():String = accessToken
+
+
+    fun getAccessToken():String = JwtaccessToken
 
 }

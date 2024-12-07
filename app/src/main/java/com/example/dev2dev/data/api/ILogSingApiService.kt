@@ -5,15 +5,14 @@ import com.example.dev2dev.data.api.dtoUser.AuthUser
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.POST
-import retrofit2.http.Query
 
 interface ILogSingApiService {
 
     @POST("/auth/sign-up")//Регистрация
-    suspend fun singUp(@Body user: AuthUser): Response<ApiToken>
+    suspend fun singUp(@Body user: AuthUser):Response<ApiToken>
 
     @POST("/auth/sign-in")//Авторизация
-    suspend fun singIn(@Body user: AuthUser):Response<ApiToken>
+    suspend fun logIn(@Body user: AuthUser):Response<ApiToken>
 
     @POST("/auth/refresh-token")//Обновление access-токена
     suspend fun refreshToken():Response<ApiToken>

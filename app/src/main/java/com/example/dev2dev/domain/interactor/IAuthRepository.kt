@@ -6,9 +6,9 @@ import com.example.dev2dev.utils.NetworkResult
 
 interface IAuthRepository {
 
-    suspend fun singIn(user: AuthUser): NetworkResult<ApiToken>
+    suspend fun logIn(user: AuthUser): NetworkResult<ApiToken>
 
-    suspend fun singUn(user: AuthUser): NetworkResult<ApiToken>
+    suspend fun singUp(user: AuthUser): NetworkResult<ApiToken>
 
 
 }

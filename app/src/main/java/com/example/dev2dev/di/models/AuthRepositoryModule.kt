@@ -1,5 +1,6 @@
 package com.example.dev2dev.di.models
 
+import com.example.dev2dev.data.Jwt.LocalTokenRepository
 import com.example.dev2dev.data.api.LogSingInApiRepository
 import com.example.dev2dev.domain.interactor.AuthInteractorImpl
 import com.example.dev2dev.domain.interactor.IAuthRepository
@@ -17,6 +18,13 @@ object AuthRepositoryModule {
     @Singleton
     fun providesIAuthRepository(logSingInApiRepository: LogSingInApiRepository): IAuthRepository {
         return AuthInteractorImpl(logSingInApiRepository)
+    }
+
+
+    @Provides
+    @Singleton
+    fun providesLocalTokenRepository(): LocalTokenRepository {
+        return LocalTokenRepository()
     }
 
 }

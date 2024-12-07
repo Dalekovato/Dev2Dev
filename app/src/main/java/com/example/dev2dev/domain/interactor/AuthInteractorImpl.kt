@@ -1,6 +1,5 @@
 package com.example.dev2dev.domain.interactor
 
-import com.example.dev2dev.data.Jwt.LocalTokenRepository
 import com.example.dev2dev.data.api.LogSingInApiRepository
 import com.example.dev2dev.data.api.dtoUser.ApiToken
 import com.example.dev2dev.data.api.dtoUser.AuthUser
@@ -11,11 +10,11 @@ class AuthInteractorImpl @Inject constructor(
     private val logSingInApiRepository: LogSingInApiRepository
 ): IAuthRepository {
 
-    override suspend fun singIn(user: AuthUser): NetworkResult<ApiToken>{
-        return logSingInApiRepository.singIn(user)
+    override suspend fun logIn(user: AuthUser): NetworkResult<ApiToken>{
+        return logSingInApiRepository.logIn(user)
     }
 
-    override suspend fun singUn(user: AuthUser): NetworkResult<ApiToken>{
+    override suspend fun singUp(user: AuthUser): NetworkResult<ApiToken>{
         return logSingInApiRepository.singUp(user)
     }
 
