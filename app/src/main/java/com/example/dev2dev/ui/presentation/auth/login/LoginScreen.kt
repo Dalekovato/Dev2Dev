@@ -149,7 +149,7 @@ fun LoginScreen(
 
         Button(
             onClick = {
-                onLoginClick()
+               // onLoginClick()
                 authViewModel.logIn(userName,password)
 
                       },

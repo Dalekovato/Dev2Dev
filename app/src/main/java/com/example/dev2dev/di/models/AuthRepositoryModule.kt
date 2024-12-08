@@ -1,9 +1,12 @@
 package com.example.dev2dev.di.models
 
-import com.example.dev2dev.data.Jwt.LocalTokenRepository
+import com.example.dev2dev.data.api.ILogSingApiService
+import com.example.dev2dev.data.jwtToken.ILocalTokenRepository
+import com.example.dev2dev.data.jwtToken.LocalTokenRepository
 import com.example.dev2dev.data.api.LogSingInApiRepository
 import com.example.dev2dev.domain.interactor.AuthInteractorImpl
 import com.example.dev2dev.domain.interactor.IAuthRepository
+import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -14,6 +17,7 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object AuthRepositoryModule {
 
+
     @Provides
     @Singleton
     fun providesIAuthRepository(logSingInApiRepository: LogSingInApiRepository): IAuthRepository {
@@ -23,8 +27,9 @@ object AuthRepositoryModule {
 
     @Provides
     @Singleton
-    fun providesLocalTokenRepository(): LocalTokenRepository {
+     fun providesLocalTokenRepository(): ILocalTokenRepository {
         return LocalTokenRepository()
     }
+
 
 }

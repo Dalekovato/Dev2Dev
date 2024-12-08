@@ -90,8 +90,11 @@ fun MyNavigation(navHostController: NavHostController) {
             }
         }
         composable(route = Route.HomeScreen().name) {
-            HomeScreen()
+            HomeScreen {
+              navHostController.navigateUp()
+            }
         }
+
 
     }
 
@@ -102,7 +105,7 @@ fun NavController.navigateToSingleTop(route: String) {
         popUpTo(graph.findStartDestination().id) {
             saveState = true   // Работаем со стеком очереди
         }
-        launchSingleTop = true // делает один экземпляр нглавного экрана
+        launchSingleTop = true // делает один экземпляр главного экрана
         restoreState = true
     }
 }

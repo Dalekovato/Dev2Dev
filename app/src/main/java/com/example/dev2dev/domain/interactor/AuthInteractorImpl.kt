@@ -18,4 +18,5 @@ class AuthInteractorImpl @Inject constructor(
         return logSingInApiRepository.singUp(user)
     }
 
+
 }
