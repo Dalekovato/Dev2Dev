@@ -1,5 +1,6 @@
 package com.example.dev2dev.ui.presentation.auth
 
+import android.content.SharedPreferences
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -48,11 +49,7 @@ class AuthViewModel @Inject constructor(
             _loginResult.value = authInteractor.logIn(AuthUser(email = email, password = password)).also {
 
             }
-
-
         }
-
-
     }
 
 
@@ -62,8 +59,5 @@ class AuthViewModel @Inject constructor(
         _accessToken.value = localTokenRepository.getAccessToken()
 
     }
-
-
-
 
 }
