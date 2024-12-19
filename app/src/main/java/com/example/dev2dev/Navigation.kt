@@ -7,13 +7,10 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
-import com.example.dev2dev.ui.presentation.HomeScreen
 import com.example.dev2dev.ui.presentation.auth.singup.PolicyScreen
 import com.example.dev2dev.ui.presentation.auth.singup.PrivacyScreen
 import com.example.dev2dev.ui.presentation.auth.singup.SingUpScreen
 import com.example.dev2dev.ui.presentation.login.LoginScreen
-import dagger.hilt.android.AndroidEntryPoint
-
 
 sealed class Route {
     data class LoginScreen(val name: String = "Login") : Route()
@@ -23,10 +20,10 @@ sealed class Route {
     data class HomeScreen(val name: String = "Home") : Route()
 }
 
+
+@Suppress("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun MyNavigation(navHostController: NavHostController) {
-
-
 
     NavHost(
         navController = navHostController,
@@ -89,15 +86,15 @@ fun MyNavigation(navHostController: NavHostController) {
                 }
             }
         }
+
         composable(route = Route.HomeScreen().name) {
-            HomeScreen {
-              navHostController.navigateUp()
-            }
-        }
+            DefaultScreen()
+       }
+
+
 
 
     }
-
 }
 
 fun NavController.navigateToSingleTop(route: String) {

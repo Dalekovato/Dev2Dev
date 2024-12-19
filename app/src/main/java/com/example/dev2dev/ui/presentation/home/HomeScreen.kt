@@ -1,4 +1,4 @@
-package com.example.dev2dev.ui.presentation
+package com.example.dev2dev.ui.presentation.home
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
