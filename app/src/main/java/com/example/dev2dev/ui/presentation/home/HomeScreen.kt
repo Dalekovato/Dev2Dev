@@ -36,7 +36,8 @@ fun HomeScreen(
 
 
     Box(
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier
+            .fillMaxSize()
             .padding(15.dp),
         contentAlignment = Alignment.Center,
     ) {
@@ -47,8 +48,8 @@ fun HomeScreen(
             Text(text = "refresh: $refreshToken\naccess: $accessToken")
             Button(
                 onClick = {
-                onLoginClick()
-            }
+                    onLoginClick()
+                }
             ) {
                 Text(text = "Back")
             }

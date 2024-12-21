@@ -17,13 +17,15 @@ sealed class Route {
     data class SingUpScreen(val name: String = "SingUp") : Route()
     data class PrivacyScreen(val name: String = "Privacy") : Route()
     data class PolicyScreen(val name: String = "Policy") : Route()
-    data class HomeScreen(val name: String = "Home") : Route()
+    data class DefaultScreen(val name: String = "Default") : Route()
 }
-
 
 @Suppress("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun MyNavigation(navHostController: NavHostController) {
+fun MyNavigation(
+    navHostController: NavHostController,
+    navBarController: NavHostController,
+) {
 
     NavHost(
         navController = navHostController,
@@ -35,7 +37,7 @@ fun MyNavigation(navHostController: NavHostController) {
                 LoginScreen(
                     onLoginClick = {
                         navHostController.navigate(
-                            Route.HomeScreen().name
+                            Route.DefaultScreen().name
                         ) {
                             popUpTo(route = "login_flow")
                         }
@@ -87,12 +89,11 @@ fun MyNavigation(navHostController: NavHostController) {
             }
         }
 
-        composable(route = Route.HomeScreen().name) {
-            DefaultScreen()
-       }
-
-
-
+        composable(route = Route.DefaultScreen().name) {
+            DefaultScreen(navBarController) {
+                navHostController.navigateToSingleTop(Route.LoginScreen().name)
+            }
+        }
 
     }
 }

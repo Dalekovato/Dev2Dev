@@ -1,6 +1,5 @@
 package com.example.dev2dev
 
-
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
@@ -14,17 +13,20 @@ import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
-import androidx.navigation.compose.rememberNavController
 
 @Suppress("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun DefaultScreen() {
-    val navHostController = rememberNavController()
+fun DefaultScreen(
+    navHostController: NavHostController,
+    onLoginClick: () -> Unit,
+) {
+
     Scaffold(
         bottomBar = { BottomBar(navController = navHostController) }
     ) {
-
-        BottomNavGraph(navController = navHostController)
+        BottomNavGraph(navController = navHostController) {
+            onLoginClick()
+        }
     }
 }
 
@@ -35,11 +37,11 @@ fun BottomBar(navController: NavHostController) {
         BottomBarScreen.Chat,
         BottomBarScreen.Profile,
 
-    )
+        )
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentDestination = navBackStackEntry?.destination
 
-    NavigationBar{
+    NavigationBar {
         screens.forEach { screen ->
             AddItem(
                 screen = screen,
@@ -54,7 +56,7 @@ fun BottomBar(navController: NavHostController) {
 fun RowScope.AddItem(
     screen: BottomBarScreen,
     currentDestination: NavDestination?,
-    navController: NavHostController
+    navController: NavHostController,
 ) {
     NavigationBarItem(
         label = {

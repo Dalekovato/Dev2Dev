@@ -9,14 +9,19 @@ import com.example.dev2dev.ui.presentation.home.HomeScreen
 import com.example.dev2dev.ui.presentation.profile.ProfileScreen
 
 @Composable
-fun BottomNavGraph(navController: NavHostController) {
+fun BottomNavGraph(
+    navController: NavHostController,
+    onLoginClick: () -> Unit,
+) {
 
     NavHost(
         navController = navController,
         startDestination = BottomBarScreen.Home.route
     ) {
         composable(route = BottomBarScreen.Home.route) {
-            HomeScreen{}
+            HomeScreen {
+                onLoginClick()
+            }
         }
         composable(route = BottomBarScreen.Chat.route) {
             ChatScreen()
