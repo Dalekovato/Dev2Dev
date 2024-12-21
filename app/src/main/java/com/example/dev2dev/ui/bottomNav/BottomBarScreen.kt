@@ -1,4 +1,4 @@
-package com.example.dev2dev
+package com.example.dev2dev.ui.bottomNav
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home

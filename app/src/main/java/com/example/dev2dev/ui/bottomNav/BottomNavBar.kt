@@ -1,4 +1,4 @@
-package com.example.dev2dev
+package com.example.dev2dev.ui.bottomNav
 
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.material3.Icon
@@ -17,14 +17,14 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 @Suppress("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun DefaultScreen(
-    navHostController: NavHostController,
+    navBarController: NavHostController,
     onLoginClick: () -> Unit,
 ) {
 
     Scaffold(
-        bottomBar = { BottomBar(navController = navHostController) }
+        bottomBar = { BottomBar(navController = navBarController) }
     ) {
-        BottomNavGraph(navController = navHostController) {
+        BottomNavGraph(navController = navBarController) {
             onLoginClick()
         }
     }
