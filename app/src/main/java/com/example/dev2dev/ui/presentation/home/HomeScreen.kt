@@ -32,9 +32,7 @@ fun HomeScreen(
     LaunchedEffect(Unit) {
         authViewModel.updateTokens()
     }
-
-
-
+    
     Box(
         modifier = Modifier
             .fillMaxSize()

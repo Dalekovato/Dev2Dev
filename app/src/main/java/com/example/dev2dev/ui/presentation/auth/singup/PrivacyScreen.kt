@@ -10,11 +10,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 
 @Composable
-fun PrivacyScreen(onBtnClick:() -> Unit) {
+fun PrivacyScreen(onBtnClick: () -> Unit) {
     Box(
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
-        ){
+    ) {
         Column {
             Text(text = "Privacy Screen")
             Button(onClick = onBtnClick) {

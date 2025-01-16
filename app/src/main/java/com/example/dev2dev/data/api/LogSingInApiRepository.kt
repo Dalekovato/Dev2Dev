@@ -13,8 +13,6 @@ class LogSingInApiRepository @Inject constructor(
     private val localTokenRepository: ILocalTokenRepository,
 ) : BaseApiResponse() {
 
-
-
     suspend fun singUp(user: AuthUser): NetworkResult<ApiToken> {
 
         val result = safeApiCall { iLogSingInApi.singUp(user) }
@@ -34,11 +32,10 @@ class LogSingInApiRepository @Inject constructor(
             localTokenRepository.setRefreshToken(it.refreshToken)
             localTokenRepository.setAccessToken(it.accessToken)
 
-            Log.d("TOKEN_REPA","${ it.accessToken}")
+            Log.d("TOKEN_REPA", "${it.accessToken}")
         }
 
         return result
     }
-
 
 }

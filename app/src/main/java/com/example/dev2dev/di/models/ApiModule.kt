@@ -44,6 +44,4 @@ object ApiModule {
     @Provides
     fun providesILogSingApiService(retrofit: Retrofit) = retrofit.create(ILogSingApiService::class.java)
 
-
-
 }

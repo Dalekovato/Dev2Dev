@@ -23,12 +23,13 @@ fun BottomNavGraph(
                 onLoginClick()
             }
         }
+
         composable(route = BottomBarScreen.Chat.route) {
             ChatScreen()
         }
+
         composable(route = BottomBarScreen.Profile.route) {
             ProfileScreen()
         }
-
     }
 }

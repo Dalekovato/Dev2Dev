@@ -93,6 +93,7 @@ fun MyNavigation(
         composable(route = Route.DefaultScreen().name) {
             DefaultScreen(navBarController) {
                 navHostController.navigateToSingleTop(Route.LoginScreen().name)
+
             }
         }
 

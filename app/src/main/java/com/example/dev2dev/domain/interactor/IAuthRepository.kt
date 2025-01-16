@@ -10,5 +10,4 @@ interface IAuthRepository {
 
     suspend fun singUp(user: AuthUser): NetworkResult<ApiToken>
 
-
 }

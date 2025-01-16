@@ -10,10 +10,10 @@ import androidx.compose.ui.text.font.FontWeight
 fun HeaderContent(
     text: String,
     modifier: Modifier = Modifier,
-){
-    
+) {
+
     Text(
-        text = text ,
+        text = text,
         style = MaterialTheme.typography.displayMedium,
         fontWeight = FontWeight.Bold,
         modifier = modifier

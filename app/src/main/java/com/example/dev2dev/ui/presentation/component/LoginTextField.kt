@@ -16,25 +16,26 @@ import androidx.compose.ui.tooling.preview.Preview
 fun LoginTextField(
     modifier: Modifier = Modifier,
     value: String,
-    onValueChange:(String) -> Unit,
+    onValueChange: (String) -> Unit,
     labelText: String,
     leadingIcon: ImageVector? = null,
     keyboardType: KeyboardType = KeyboardType.Text,
-    visualTransformation: VisualTransformation = VisualTransformation.None
-){
+    visualTransformation: VisualTransformation = VisualTransformation.None,
+) {
 
     OutlinedTextField(
         modifier = modifier,
         value = value,
-        onValueChange  = onValueChange,
-        label = { Text(labelText)},
-        leadingIcon = {if (leadingIcon != null) Icon(imageVector = leadingIcon,null)},
+        onValueChange = onValueChange,
+        label = { Text(labelText) },
+        leadingIcon = { if (leadingIcon != null) Icon(imageVector = leadingIcon, null) },
         keyboardOptions = KeyboardOptions(keyboardType = keyboardType),
         visualTransformation = visualTransformation,
         shape = RoundedCornerShape(30)
     )
 
 }
+
 @Preview(showBackground = true)
 @Composable
 fun PrevTextField() {

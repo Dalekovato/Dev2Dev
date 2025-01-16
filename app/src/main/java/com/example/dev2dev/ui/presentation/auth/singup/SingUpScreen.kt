@@ -48,7 +48,7 @@ fun SingUpScreen(
     onPolicyClick: () -> Unit,
     onPrivacyClick: () -> Unit,
 
-) {
+    ) {
     val authViewModel: AuthViewModel = hiltViewModel()
 
     val (firstName, onFirstNameChange) = rememberSaveable {
@@ -83,7 +83,6 @@ fun SingUpScreen(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
 
-        
         HeaderContent(
             text = "Sing Up",
             modifier = Modifier
@@ -187,9 +186,9 @@ fun SingUpScreen(
         Button(
             onClick = {
                 isPasswordSame = password != confirmPassword
-                if(!isPasswordSame){
-                    authViewModel.singUp(email,password)
-                   // onSingUpClick()
+                if (!isPasswordSame) {
+                    authViewModel.singUp(email, password)
+                    // onSingUpClick()
                 }
             },
             modifier = Modifier.fillMaxWidth(),
@@ -225,6 +224,6 @@ fun SingUpScreen(
 @Composable
 fun PrevSingUp(modifier: Modifier = Modifier) {
     Dev2DevTheme {
-        SingUpScreen({},{},{},{})
+        SingUpScreen({}, {}, {}, {})
     }
 }

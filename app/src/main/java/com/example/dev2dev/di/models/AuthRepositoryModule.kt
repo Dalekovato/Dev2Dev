@@ -17,19 +17,16 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object AuthRepositoryModule {
 
-
     @Provides
     @Singleton
     fun providesIAuthRepository(logSingInApiRepository: LogSingInApiRepository): IAuthRepository {
         return AuthInteractorImpl(logSingInApiRepository)
     }
 
-
     @Provides
     @Singleton
-     fun providesLocalTokenRepository(): ILocalTokenRepository {
+    fun providesLocalTokenRepository(): ILocalTokenRepository {
         return LocalTokenRepository()
     }
-
 
 }

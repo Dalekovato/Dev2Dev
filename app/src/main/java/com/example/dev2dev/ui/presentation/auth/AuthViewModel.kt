@@ -20,9 +20,8 @@ import javax.inject.Inject
 @HiltViewModel
 class AuthViewModel @Inject constructor(
     private val authInteractor: IAuthRepository,
-    private val localTokenRepository: ILocalTokenRepository
-):ViewModel() {
-
+    private val localTokenRepository: ILocalTokenRepository,
+) : ViewModel() {
 
     private val _loginResult = MutableLiveData<NetworkResult<ApiToken>>()
     val loginResult: LiveData<NetworkResult<ApiToken>> get() = _loginResult
@@ -43,15 +42,12 @@ class AuthViewModel @Inject constructor(
         }
     }
 
-    fun logIn(email: String, password: String){
+    fun logIn(email: String, password: String) {
         viewModelScope.launch {
             _loginResult.value = NetworkResult.Loading()
-            _loginResult.value = authInteractor.logIn(AuthUser(email = email, password = password)).also {
-
-            }
+            _loginResult.value = authInteractor.logIn(AuthUser(email = email, password = password))
         }
     }
-
 
     // Метод для обновления токенов
     fun updateTokens() {

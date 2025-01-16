@@ -4,24 +4,22 @@ import javax.inject.Inject
 
 class LocalTokenRepository @Inject constructor(
 
-): ILocalTokenRepository {
+) : ILocalTokenRepository {
 
-    private var jwtrefreshToken : String? = ""
-    private var jwtaccessToken : String? = ""
+    private var jwtrefreshToken: String? = ""
+    private var jwtaccessToken: String? = ""
 
-    override fun setRefreshToken(refreshToken : String){
+    override fun setRefreshToken(refreshToken: String) {
         this.jwtrefreshToken = refreshToken
     }
 
-    override fun setAccessToken(accessToken : String){
+    override fun setAccessToken(accessToken: String) {
         this.jwtaccessToken = accessToken
 
     }
 
     override fun getRefreshToken(): String = jwtrefreshToken.toString()
 
-
-
-    override fun getAccessToken():String = jwtaccessToken.toString()
+    override fun getAccessToken(): String = jwtaccessToken.toString()
 
 }

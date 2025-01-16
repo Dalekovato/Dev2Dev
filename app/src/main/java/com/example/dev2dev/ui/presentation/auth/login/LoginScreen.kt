@@ -56,13 +56,13 @@ fun LoginScreen(
 
     val authViewModel: AuthViewModel = hiltViewModel()
 
-    val (userName , setUsername) = rememberSaveable {
+    val (userName, setUsername) = rememberSaveable {
         mutableStateOf("zdarovaZaebal@mail.com")
     }
-    val (password , setPassword) = rememberSaveable {
+    val (password, setPassword) = rememberSaveable {
         mutableStateOf("123")
     }
-    val (checked , onCheckedChange) = rememberSaveable {
+    val (checked, onCheckedChange) = rememberSaveable {
         mutableStateOf(false)
     }
     val isFieldsEmpty = userName.isNotEmpty() && password.isNotEmpty()
@@ -83,7 +83,6 @@ fun LoginScreen(
                 .padding(vertical = defaultPadding)
                 .align(alignment = Alignment.Start)
 
-
         )
 
         LoginTextField(
@@ -92,7 +91,7 @@ fun LoginScreen(
             labelText = "Username",
             leadingIcon = Icons.Default.Person,
             modifier = Modifier.fillMaxWidth()
-            )
+        )
         Spacer(modifier = Modifier.height(itemSpacing))
 
 
@@ -125,19 +124,18 @@ fun LoginScreen(
 
         Spacer(modifier = Modifier.height(itemSpacing))
 
-
         val loginResult by authViewModel.loginResult.observeAsState()
         LaunchedEffect(loginResult) {
-            when(loginResult){
-                is NetworkResult.Success ->{
+            when (loginResult) {
+                is NetworkResult.Success -> {
                     // Перенаправляем на домашнюю страницу
                     onLoginClick()
                 }
-                is NetworkResult.Error ->{
+                is NetworkResult.Error -> {
                     //Сделать диалоговое окно ошибки
-                    Toast.makeText(context,"Incorrect login or password",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "Incorrect login or password", Toast.LENGTH_SHORT).show()
                 }
-                is NetworkResult.Loading ->{
+                is NetworkResult.Loading -> {
                     //Сделать экран загрузки
                 }
                 else -> {
@@ -149,29 +147,29 @@ fun LoginScreen(
 
         Button(
             onClick = {
-               // onLoginClick()
-                authViewModel.logIn(userName,password)
+                // onLoginClick()
+                authViewModel.logIn(userName, password)
 
-                      },
+            },
             modifier = Modifier.fillMaxWidth(),
             enabled = isFieldsEmpty,
         ) {
             Text(text = "Login")
         }
         AlternativeLoginOptions(
-            onIconClick = {index ->
-                when(index){
+            onIconClick = { index ->
+                when (index) {
                     0 -> {
-                        Toast.makeText(context,"Instagram Login in development",Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, "Instagram Login in development", Toast.LENGTH_SHORT).show()
                     }
                     1 -> {
-                        Toast.makeText(context,"Google Login in development",Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, "Google Login in development", Toast.LENGTH_SHORT).show()
                     }
                     2 -> {
-                        Toast.makeText(context,"Github Login in development",Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, "Github Login in development", Toast.LENGTH_SHORT).show()
                     }
                 }
-            } ,
+            },
             onSignUpClick = onSignUpClick,
             modifier = Modifier
                 .fillMaxSize()
@@ -185,9 +183,9 @@ fun LoginScreen(
 
 @Composable
 fun AlternativeLoginOptions(
-    onIconClick:(index:Int) -> Unit,
-    onSignUpClick:() -> Unit ,
-    modifier: Modifier = Modifier
+    onIconClick: (index: Int) -> Unit,
+    onSignUpClick: () -> Unit,
+    modifier: Modifier = Modifier,
 ) {
 
     val iconList = listOf(
@@ -195,14 +193,14 @@ fun AlternativeLoginOptions(
         R.drawable.ic_google,
         R.drawable.ic_github,
     )
-    
+
     Column(
         modifier = modifier.fillMaxWidth(),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(text = "Or Sing in With")
-        Row (horizontalArrangement = Arrangement.SpaceEvenly){
+        Row(horizontalArrangement = Arrangement.SpaceEvenly) {
             iconList.forEachIndexed { index, iconResId ->
                 Icon(
                     painter = painterResource(id = iconResId),
@@ -237,8 +235,8 @@ fun AlternativeLoginOptions(
 @Composable
 fun PrewLogInScreen() {
 
-  Dev2DevTheme {
-      LoginScreen({},{})
-  }
+    Dev2DevTheme {
+        LoginScreen({}, {})
+    }
 
 }
