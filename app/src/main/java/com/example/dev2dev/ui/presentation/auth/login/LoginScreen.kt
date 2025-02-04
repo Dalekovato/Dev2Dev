@@ -1,4 +1,4 @@
-package com.example.dev2dev.ui.presentation.login
+package com.example.dev2dev.ui.presentation.auth.login
 
 import android.widget.Toast
 import androidx.compose.foundation.clickable
@@ -147,9 +147,7 @@ fun LoginScreen(
 
         Button(
             onClick = {
-                // onLoginClick()
                 authViewModel.logIn(userName, password)
-
             },
             modifier = Modifier.fillMaxWidth(),
             enabled = isFieldsEmpty,

@@ -1,7 +1,5 @@
 package com.example.dev2dev.ui.presentation.auth
 
-import android.content.SharedPreferences
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -34,7 +32,6 @@ class AuthViewModel @Inject constructor(
     val accessToken: StateFlow<String> get() = _accessToken
 
     fun singUp(email: String, password: String) {
-
         viewModelScope.launch {
             _loginResult.value = NetworkResult.Loading()
             _loginResult.value = authInteractor.singUp(AuthUser(email = email, password = password))

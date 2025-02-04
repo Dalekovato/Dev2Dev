@@ -8,10 +8,10 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
 import com.example.dev2dev.ui.bottomNav.DefaultScreen
+import com.example.dev2dev.ui.presentation.auth.login.LoginScreen
 import com.example.dev2dev.ui.presentation.auth.singup.PolicyScreen
 import com.example.dev2dev.ui.presentation.auth.singup.PrivacyScreen
 import com.example.dev2dev.ui.presentation.auth.singup.SingUpScreen
-import com.example.dev2dev.ui.presentation.login.LoginScreen
 
 sealed class Route {
     data class LoginScreen(val name: String = "Login") : Route()

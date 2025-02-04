@@ -25,7 +25,6 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
@@ -34,11 +33,10 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.dev2dev.ui.presentation.auth.AuthViewModel
+import com.example.dev2dev.ui.presentation.auth.login.defaultPadding
 import com.example.dev2dev.ui.presentation.component.HeaderContent
 import com.example.dev2dev.ui.presentation.component.LoginTextField
-import com.example.dev2dev.ui.presentation.login.defaultPadding
 import com.example.dev2dev.ui.theme.Dev2DevTheme
 
 @Composable
@@ -183,12 +181,13 @@ fun SingUpScreen(
             }
         }
         Spacer(modifier = Modifier.height(defaultPadding + 8.dp))
+
         Button(
             onClick = {
                 isPasswordSame = password != confirmPassword
                 if (!isPasswordSame) {
                     authViewModel.singUp(email, password)
-                    // onSingUpClick()
+                    onSingUpClick()
                 }
             },
             modifier = Modifier.fillMaxWidth(),
@@ -219,6 +218,7 @@ fun SingUpScreen(
     }
 
 }
+
 
 @Preview(showSystemUi = true)
 @Composable
