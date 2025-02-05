@@ -1,6 +1,7 @@
 package com.example.dev2dev.di.models
 
-import com.example.dev2dev.data.api.ILogSingApiService
+import com.example.dev2dev.data.api.auth.ILogSingApiService
+import com.example.dev2dev.utils.Helper
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -15,7 +16,6 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object ApiModule {
 
-    private const val BASE_URL = "http://150.241.83.123:8081"
 
     @Singleton
     @Provides
@@ -35,7 +35,7 @@ object ApiModule {
     @Provides
     fun providesRetrofit(okHttpClient: OkHttpClient) =
         Retrofit.Builder()
-            .baseUrl(BASE_URL)
+            .baseUrl(Helper.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .client(okHttpClient)
             .build()

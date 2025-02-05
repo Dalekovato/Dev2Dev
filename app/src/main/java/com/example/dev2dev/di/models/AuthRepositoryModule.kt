@@ -1,12 +1,13 @@
 package com.example.dev2dev.di.models
 
-import com.example.dev2dev.data.api.ILogSingApiService
 import com.example.dev2dev.data.jwtToken.ILocalTokenRepository
 import com.example.dev2dev.data.jwtToken.LocalTokenRepository
-import com.example.dev2dev.data.api.LogSingInApiRepository
-import com.example.dev2dev.domain.interactor.AuthInteractorImpl
-import com.example.dev2dev.domain.interactor.IAuthRepository
-import dagger.Binds
+import com.example.dev2dev.data.api.auth.LogSingInApiRepository
+import com.example.dev2dev.data.api.main.MainApiRepository
+import com.example.dev2dev.domain.interactor.auth.AuthInteractorImpl
+import com.example.dev2dev.domain.interactor.auth.IAuthInteractor
+import com.example.dev2dev.domain.interactor.main.IMainInteractor
+import com.example.dev2dev.domain.interactor.main.MainInteractorImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -19,7 +20,7 @@ object AuthRepositoryModule {
 
     @Provides
     @Singleton
-    fun providesIAuthRepository(logSingInApiRepository: LogSingInApiRepository): IAuthRepository {
+    fun providesIAuthRepository(logSingInApiRepository: LogSingInApiRepository): IAuthInteractor {
         return AuthInteractorImpl(logSingInApiRepository)
     }
 
@@ -27,6 +28,12 @@ object AuthRepositoryModule {
     @Singleton
     fun providesLocalTokenRepository(): ILocalTokenRepository {
         return LocalTokenRepository()
+    }
+
+    @Provides
+    @Singleton
+    fun providesIMainRepository(mainApiRepository: MainApiRepository): IMainInteractor{
+        return MainInteractorImpl(mainApiRepository)
     }
 
 }

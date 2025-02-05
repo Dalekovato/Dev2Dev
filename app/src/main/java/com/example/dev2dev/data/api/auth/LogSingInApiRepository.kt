@@ -1,8 +1,8 @@
-package com.example.dev2dev.data.api
+package com.example.dev2dev.data.api.auth
 
 import android.util.Log
-import com.example.dev2dev.data.api.dtoUser.ApiToken
-import com.example.dev2dev.data.api.dtoUser.AuthUser
+import com.example.dev2dev.data.api.dtoUser.ApiTokenDto
+import com.example.dev2dev.data.api.dtoUser.AuthUserDto
 import com.example.dev2dev.data.jwtToken.ILocalTokenRepository
 import com.example.dev2dev.utils.BaseApiResponse
 import com.example.dev2dev.utils.NetworkResult
@@ -13,7 +13,7 @@ class LogSingInApiRepository @Inject constructor(
     private val localTokenRepository: ILocalTokenRepository,
 ) : BaseApiResponse() {
 
-    suspend fun singUp(user: AuthUser): NetworkResult<ApiToken> {
+    suspend fun singUp(user: AuthUserDto): NetworkResult<ApiTokenDto> {
 
         val result = safeApiCall { iLogSingInApi.singUp(user) }
 
@@ -24,7 +24,7 @@ class LogSingInApiRepository @Inject constructor(
         return result
     }
 
-    suspend fun logIn(user: AuthUser): NetworkResult<ApiToken> {
+    suspend fun logIn(user: AuthUserDto): NetworkResult<ApiTokenDto> {
 
         val result = safeApiCall { iLogSingInApi.logIn(user) }
 
@@ -32,7 +32,7 @@ class LogSingInApiRepository @Inject constructor(
             localTokenRepository.setRefreshToken(it.refreshToken)
             localTokenRepository.setAccessToken(it.accessToken)
 
-            Log.d("TOKEN_REPA", "${it.accessToken}")
+            Log.d("TOKEN_REPO", "${it.accessToken}")
         }
 
         return result

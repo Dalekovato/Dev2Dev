@@ -3,7 +3,6 @@ package com.example.dev2dev.data.jwtToken
 import javax.inject.Inject
 
 class LocalTokenRepository @Inject constructor(
-
 ) : ILocalTokenRepository {
 
     private var jwtrefreshToken: String? = ""
