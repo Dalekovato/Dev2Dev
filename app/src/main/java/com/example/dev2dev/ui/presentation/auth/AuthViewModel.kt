@@ -24,6 +24,9 @@ class AuthViewModel @Inject constructor(
     private val _loginResult = MutableLiveData<NetworkResult<ApiTokenDto>>()
     val loginResult: LiveData<NetworkResult<ApiTokenDto>> get() = _loginResult
 
+    private val _singUpResult = MutableLiveData<NetworkResult<Unit>>()
+    val singUpResult: LiveData<NetworkResult<Unit>> get() = _singUpResult
+
     // StateFlow для токенов
     private val _refreshToken = MutableStateFlow("")
     val refreshToken: StateFlow<String> get() = _refreshToken
@@ -33,8 +36,8 @@ class AuthViewModel @Inject constructor(
 
     fun singUp(email: String, password: String) {
         viewModelScope.launch {
-            _loginResult.value = NetworkResult.Loading()
-            _loginResult.value = authInteractor.singUp(AuthUserDto(email = email, password = password))
+            _singUpResult.value = NetworkResult.Loading()
+            _singUpResult.value = authInteractor.singUp(AuthUserDto(email = email, password = password))
 
         }
     }

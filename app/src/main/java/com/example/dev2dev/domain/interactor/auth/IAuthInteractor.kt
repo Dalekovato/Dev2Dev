@@ -8,6 +8,6 @@ interface IAuthInteractor {
 
     suspend fun logIn(user: AuthUserDto): NetworkResult<ApiTokenDto>
 
-    suspend fun singUp(user: AuthUserDto): NetworkResult<ApiTokenDto>
+    suspend fun singUp(user: AuthUserDto): NetworkResult<Unit>
 
 }

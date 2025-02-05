@@ -9,9 +9,7 @@ abstract class BaseApiResponse {
             val response = api()
             if (response.isSuccessful){
                 val body = response.body()
-                body?.let {
-                    return NetworkResult.Success(body)
-                }?: return errorMessage("Body is empty")
+                return NetworkResult.Success(body)
             } else {
                 return errorMessage("${response.code()} ${response.message()}")
             }

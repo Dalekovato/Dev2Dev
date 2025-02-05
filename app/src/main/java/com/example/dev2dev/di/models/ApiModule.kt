@@ -29,7 +29,7 @@ object ApiModule {
     fun providesOkHttpKlient(httpLogingInterceptor: HttpLoggingInterceptor) =
         OkHttpClient.Builder()
             .addInterceptor(httpLogingInterceptor)
-            .build()  // гдето-тут добавить токен
+            .build()
 
     @Singleton
     @Provides

@@ -14,7 +14,7 @@ class AuthInteractorImpl @Inject constructor(
         return logSingInApiRepository.logIn(user)
     }
 
-    override suspend fun singUp(user: AuthUserDto): NetworkResult<ApiTokenDto> {
+    override suspend fun singUp(user: AuthUserDto): NetworkResult<Unit> {
         return logSingInApiRepository.singUp(user)
     }
 

@@ -18,7 +18,9 @@ import androidx.compose.material3.Checkbox
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -38,6 +40,7 @@ import com.example.dev2dev.ui.presentation.auth.login.defaultPadding
 import com.example.dev2dev.ui.presentation.component.HeaderContent
 import com.example.dev2dev.ui.presentation.component.LoginTextField
 import com.example.dev2dev.ui.theme.Dev2DevTheme
+import com.example.dev2dev.utils.NetworkResult
 
 @Composable
 fun SingUpScreen(
@@ -182,12 +185,30 @@ fun SingUpScreen(
         }
         Spacer(modifier = Modifier.height(defaultPadding + 8.dp))
 
+        val loginResult by authViewModel.singUpResult.observeAsState()
+        LaunchedEffect(loginResult) {
+            when (loginResult) {
+                is NetworkResult.Success -> {
+                    // Перенаправляем на домашнюю страницу
+                    onSingUpClick()
+                }
+                is NetworkResult.Error -> {
+                    //Сделать диалоговое окно ошибки
+                    Toast.makeText(context, "Incorrect login or password", Toast.LENGTH_SHORT).show()
+                }
+                is NetworkResult.Loading -> {
+                    //Сделать экран загрузки
+                }
+                else -> {
+                    //Сделать экран ошибки системмы
+                }
+            }
+        }
         Button(
             onClick = {
                 isPasswordSame = password != confirmPassword
                 if (!isPasswordSame) {
                     authViewModel.singUp(email, password)
-                    onSingUpClick()
                 }
             },
             modifier = Modifier.fillMaxWidth(),

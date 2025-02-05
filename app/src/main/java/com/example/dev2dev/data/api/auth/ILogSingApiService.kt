@@ -9,7 +9,7 @@ import retrofit2.http.POST
 interface ILogSingApiService {
 
     @POST("/auth/sign-up") //Регистрация
-    suspend fun singUp(@Body user: AuthUserDto): Response<ApiTokenDto>
+    suspend fun singUp(@Body user: AuthUserDto): Response<Unit>
 
     @POST("/auth/sign-in") //Авторизация
     suspend fun logIn(@Body user: AuthUserDto): Response<ApiTokenDto>

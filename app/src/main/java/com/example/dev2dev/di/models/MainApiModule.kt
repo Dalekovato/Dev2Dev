@@ -54,7 +54,6 @@ object MainApiModule {
                 }
 
                 val response = chain.proceed(requestBuilder.build())
-
                 // Проверяем, не истек ли токен
                 if (response.code == 401 ) {
 
@@ -64,7 +63,6 @@ object MainApiModule {
                     val newToken = runBlocking {
                         mainApiRepository.refreshToken(refreshToken)
                     }
-
                     if (newToken.isSuccessful) {
                         newToken.body()?.let { tokenResponse ->
                             localTokenRepository.setAccessToken(tokenResponse.accessToken)
