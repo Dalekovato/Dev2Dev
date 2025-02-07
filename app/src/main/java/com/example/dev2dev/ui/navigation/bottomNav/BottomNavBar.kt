@@ -1,4 +1,4 @@
-package com.example.dev2dev.ui.bottomNav
+package com.example.dev2dev.ui.navigation.bottomNav
 
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.material3.Icon

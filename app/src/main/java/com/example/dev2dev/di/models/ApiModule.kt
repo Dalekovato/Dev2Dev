@@ -10,6 +10,7 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import javax.inject.Named
 import javax.inject.Singleton
 
 @Module
@@ -19,6 +20,7 @@ object ApiModule {
 
     @Singleton
     @Provides
+    @Named("auth")
     fun prividesHttpLoggingInterceptor() =
         HttpLoggingInterceptor().apply {
             level = HttpLoggingInterceptor.Level.BODY
@@ -26,14 +28,16 @@ object ApiModule {
 
     @Singleton
     @Provides
-    fun providesOkHttpKlient(httpLogingInterceptor: HttpLoggingInterceptor) =
+    @Named("auth")
+    fun providesAuthOkHttpClient(@Named("auth")httpLogingInterceptor: HttpLoggingInterceptor) =
         OkHttpClient.Builder()
             .addInterceptor(httpLogingInterceptor)
             .build()
 
     @Singleton
     @Provides
-    fun providesRetrofit(okHttpClient: OkHttpClient) =
+    @Named("auth")
+    fun providesAuthRetrofit(@Named("auth")okHttpClient: OkHttpClient): Retrofit =
         Retrofit.Builder()
             .baseUrl(Helper.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
@@ -42,6 +46,6 @@ object ApiModule {
 
     @Singleton
     @Provides
-    fun providesILogSingApiService(retrofit: Retrofit) = retrofit.create(ILogSingApiService::class.java)
+    fun providesILogSingApiService(@Named("auth")retrofit: Retrofit) = retrofit.create(ILogSingApiService::class.java)
 
 }

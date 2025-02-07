@@ -1,4 +1,4 @@
-package com.example.dev2dev.ui.presentation.home
+package com.example.dev2dev.ui.presentation.main.home
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -16,6 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.dev2dev.ui.presentation.auth.AuthViewModel
+import com.example.dev2dev.ui.presentation.main.MainViewModel
 
 @Composable
 fun HomeScreen(
@@ -23,7 +24,7 @@ fun HomeScreen(
 ) {
 
     val authViewModel: AuthViewModel = hiltViewModel()
-
+    val mainViewModel: MainViewModel = hiltViewModel()
     // Подписываемся на значения StateFlow
     val refreshToken by authViewModel.refreshToken.collectAsState()
     val accessToken by authViewModel.accessToken.collectAsState()
@@ -44,6 +45,15 @@ fun HomeScreen(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(text = "refresh: $refreshToken\naccess: $accessToken")
+
+            Button(
+                onClick = {
+                    mainViewModel.testRoad()
+                }
+            ) {
+                Text(text = "TestRoad")
+            }
+
             Button(
                 onClick = {
                     onLoginClick()

@@ -24,9 +24,10 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object MainApiModule {
 
+
     @Singleton
     @Provides
-    @Named("Main")
+    @Named("main")
     fun prividesHttpLoggingInterceptor() =
         HttpLoggingInterceptor().apply {
             level = HttpLoggingInterceptor.Level.BODY
@@ -34,17 +35,18 @@ object MainApiModule {
 
     @Singleton
     @Provides
-    @Named("Main")
-    fun providesOkHttpClient(
+    @Named("main")
+    fun providesMainOkHttpClient(
         localTokenRepository: LocalTokenRepository,
         mainApiRepository: MainApiRepository,
-        @Named("Main") httpLoggingInterceptor: HttpLoggingInterceptor
+        @Named("main")httpLoggingInterceptor: HttpLoggingInterceptor
     ): OkHttpClient =
         OkHttpClient.Builder()
             .addInterceptor(httpLoggingInterceptor)
             .addInterceptor { chain ->
                 val requestBuilder: Request.Builder = chain.request().newBuilder()
                 val accessToken = localTokenRepository.getAccessToken()
+                Log.d("OkHttpInterceptor", "Access Token: $accessToken")
                 val refreshToken = localTokenRepository.getRefreshToken()
 
                 if (TextUtils.isEmpty(accessToken)) {
@@ -82,8 +84,8 @@ object MainApiModule {
 
     @Singleton
     @Provides
-    @Named("Main")
-    fun providesRetrofit(@Named("Main")okHttpClient: OkHttpClient) =
+    @Named("main")
+    fun providesMainRetrofit(@Named("main")okHttpClient: OkHttpClient) =
         Retrofit.Builder()
             .baseUrl(Helper.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
@@ -92,7 +94,6 @@ object MainApiModule {
 
     @Singleton
     @Provides
-    @Named("Main")
-    fun providesIMainApiService(@Named("Main")retrofit: Retrofit) = retrofit.create(IMainService::class.java)
+    fun providesIMainApiService(@Named("main")retrofit: Retrofit) = retrofit.create(IMainService::class.java)
 
 }

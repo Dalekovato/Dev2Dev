@@ -12,8 +12,4 @@ interface IMainInteractor {
     // Тестовое поле
     suspend fun testRoad()
 
-
-
-
-
 }
