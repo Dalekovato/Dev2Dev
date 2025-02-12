@@ -1,23 +1,19 @@
-package com.example.dev2dev.data.api.main
+package com.example.dev2dev.data.api.base
 
-import com.example.dev2dev.data.api.dtoUser.ApiTokenDto
 import com.example.dev2dev.data.api.dtoUser.UserDataProfileDto
 import com.example.dev2dev.domain.mapper.UserDataProfileMapper
 import com.example.dev2dev.domain.model.UserDataProfileDomain
 import retrofit2.Response
 import javax.inject.Inject
 
-class MainApiRepository @Inject constructor(
-    private val iMainService: IMainService,
+class BaseApiRepository @Inject constructor(
+    private val iBaseService: IBaseService,
 ) {
 
-    suspend fun refreshToken(refreshToken: String):Response<ApiTokenDto>{
-       return iMainService.refreshToken(refreshToken)
-    }
 
     suspend fun editProfile(userDataProfileDto: UserDataProfileDto): Response<UserDataProfileDomain>{
 
-        val response = iMainService.editProfile(userDataProfileDto)
+        val response = iBaseService.editProfile(userDataProfileDto)
 
         return  Response.success(
             UserDataProfileMapper(
@@ -26,8 +22,8 @@ class MainApiRepository @Inject constructor(
         )
     }
 
-    suspend fun testRoad(){
-        iMainService.testRoad()
+    suspend fun testRoad(): Response<Unit>{
+       return iBaseService.testRoad()
     }
 
 }

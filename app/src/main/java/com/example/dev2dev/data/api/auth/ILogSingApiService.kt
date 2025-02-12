@@ -17,6 +17,9 @@ interface ILogSingApiService {
     @POST("/auth/logout") //Выход из учетки
     suspend fun logOut()
 
+    @POST("/auth/refresh-token") //Обновление access-токена
+    suspend fun refreshToken(@Body refreshToken: String):Response<ApiTokenDto>
+
 }
 
 

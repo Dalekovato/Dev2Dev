@@ -1,4 +1,4 @@
-package com.example.dev2dev.ui.presentation.main.home
+package com.example.dev2dev.ui.presentation.base.home
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -16,7 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.dev2dev.ui.presentation.auth.AuthViewModel
-import com.example.dev2dev.ui.presentation.main.MainViewModel
+import com.example.dev2dev.ui.presentation.base.BaseViewModel
 
 @Composable
 fun HomeScreen(
@@ -24,7 +24,7 @@ fun HomeScreen(
 ) {
 
     val authViewModel: AuthViewModel = hiltViewModel()
-    val mainViewModel: MainViewModel = hiltViewModel()
+    val baseViewModel: BaseViewModel = hiltViewModel()
     // Подписываемся на значения StateFlow
     val refreshToken by authViewModel.refreshToken.collectAsState()
     val accessToken by authViewModel.accessToken.collectAsState()
@@ -33,7 +33,7 @@ fun HomeScreen(
     LaunchedEffect(Unit) {
         authViewModel.updateTokens()
     }
-    
+
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -48,7 +48,7 @@ fun HomeScreen(
 
             Button(
                 onClick = {
-                    mainViewModel.testRoad()
+                    baseViewModel.testRoad()
                 }
             ) {
                 Text(text = "TestRoad")

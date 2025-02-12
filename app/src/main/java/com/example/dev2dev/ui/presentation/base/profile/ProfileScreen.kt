@@ -1,4 +1,4 @@
-package com.example.dev2dev.ui.presentation.main.profile
+package com.example.dev2dev.ui.presentation.base.profile
 
 import androidx.compose.runtime.Composable
 

@@ -6,6 +6,7 @@ import com.example.dev2dev.data.api.dtoUser.AuthUserDto
 import com.example.dev2dev.data.jwtToken.ILocalTokenRepository
 import com.example.dev2dev.utils.BaseApiResponse
 import com.example.dev2dev.utils.NetworkResult
+import retrofit2.Response
 import javax.inject.Inject
 
 class LogSingInApiRepository @Inject constructor(
@@ -31,6 +32,10 @@ class LogSingInApiRepository @Inject constructor(
         }
 
         return result
+    }
+
+    suspend fun refreshToken(refreshToken: String): Response<ApiTokenDto> {
+        return iLogSingInApi.refreshToken(refreshToken)
     }
 
 }

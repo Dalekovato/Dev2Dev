@@ -2,8 +2,9 @@ package com.example.dev2dev.di.models
 
 import android.text.TextUtils
 import android.util.Log
-import com.example.dev2dev.data.api.main.IMainService
-import com.example.dev2dev.data.api.main.MainApiRepository
+import com.example.dev2dev.data.api.auth.LogSingInApiRepository
+import com.example.dev2dev.data.api.base.IBaseService
+import com.example.dev2dev.data.jwtToken.ILocalTokenRepository
 import com.example.dev2dev.data.jwtToken.LocalTokenRepository
 import com.example.dev2dev.utils.Helper
 import com.example.dev2dev.utils.MissingAccessTokenException
@@ -22,12 +23,12 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object MainApiModule {
+object BaseApiModule {
 
 
     @Singleton
     @Provides
-    @Named("main")
+    @Named("base")
     fun prividesHttpLoggingInterceptor() =
         HttpLoggingInterceptor().apply {
             level = HttpLoggingInterceptor.Level.BODY
@@ -35,11 +36,11 @@ object MainApiModule {
 
     @Singleton
     @Provides
-    @Named("main")
-    fun providesMainOkHttpClient(
-        localTokenRepository: LocalTokenRepository,
-        mainApiRepository: MainApiRepository,
-        @Named("main")httpLoggingInterceptor: HttpLoggingInterceptor
+    @Named("base")
+    fun providesBaseOkHttpClient(
+        localTokenRepository: ILocalTokenRepository,
+        logSingInApiRepository: LogSingInApiRepository,
+        @Named("base")httpLoggingInterceptor: HttpLoggingInterceptor
     ): OkHttpClient =
         OkHttpClient.Builder()
             .addInterceptor(httpLoggingInterceptor)
@@ -63,7 +64,7 @@ object MainApiModule {
 
                     // Попробуем обновить токен
                     val newToken = runBlocking {
-                        mainApiRepository.refreshToken(refreshToken)
+                        logSingInApiRepository.refreshToken(refreshToken)
                     }
                     if (newToken.isSuccessful) {
                         newToken.body()?.let { tokenResponse ->
@@ -84,8 +85,8 @@ object MainApiModule {
 
     @Singleton
     @Provides
-    @Named("main")
-    fun providesMainRetrofit(@Named("main")okHttpClient: OkHttpClient) =
+    @Named("base")
+    fun providesBaseRetrofit(@Named("base")okHttpClient: OkHttpClient) =
         Retrofit.Builder()
             .baseUrl(Helper.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
@@ -94,6 +95,6 @@ object MainApiModule {
 
     @Singleton
     @Provides
-    fun providesIMainApiService(@Named("main")retrofit: Retrofit) = retrofit.create(IMainService::class.java)
+    fun providesIBaseApiService(@Named("base")retrofit: Retrofit) = retrofit.create(IBaseService::class.java)
 
 }

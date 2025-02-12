@@ -3,11 +3,11 @@ package com.example.dev2dev.di.models
 import com.example.dev2dev.data.jwtToken.ILocalTokenRepository
 import com.example.dev2dev.data.jwtToken.LocalTokenRepository
 import com.example.dev2dev.data.api.auth.LogSingInApiRepository
-import com.example.dev2dev.data.api.main.MainApiRepository
+import com.example.dev2dev.data.api.base.BaseApiRepository
 import com.example.dev2dev.domain.interactor.auth.AuthInteractorImpl
 import com.example.dev2dev.domain.interactor.auth.IAuthInteractor
-import com.example.dev2dev.domain.interactor.main.IMainInteractor
-import com.example.dev2dev.domain.interactor.main.MainInteractorImpl
+import com.example.dev2dev.domain.interactor.Base.IBaseInteractor
+import com.example.dev2dev.domain.interactor.Base.BaseInteractorImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -32,8 +32,8 @@ object AuthRepositoryModule {
 
     @Provides
     @Singleton
-    fun providesIMainRepository(mainApiRepository: MainApiRepository): IMainInteractor{
-        return MainInteractorImpl(mainApiRepository)
+    fun providesIBaseRepository(baseApiRepository: BaseApiRepository): IBaseInteractor{
+        return BaseInteractorImpl(baseApiRepository)
     }
 
 }
