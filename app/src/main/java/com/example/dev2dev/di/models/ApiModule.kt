@@ -17,7 +17,6 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object ApiModule {
 
-
     @Singleton
     @Provides
     @Named("auth")
@@ -29,7 +28,7 @@ object ApiModule {
     @Singleton
     @Provides
     @Named("auth")
-    fun providesAuthOkHttpClient(@Named("auth")httpLogingInterceptor: HttpLoggingInterceptor) =
+    fun providesAuthOkHttpClient(@Named("auth") httpLogingInterceptor: HttpLoggingInterceptor) =
         OkHttpClient.Builder()
             .addInterceptor(httpLogingInterceptor)
             .build()
@@ -37,7 +36,7 @@ object ApiModule {
     @Singleton
     @Provides
     @Named("auth")
-    fun providesAuthRetrofit(@Named("auth")okHttpClient: OkHttpClient): Retrofit =
+    fun providesAuthRetrofit(@Named("auth") okHttpClient: OkHttpClient): Retrofit =
         Retrofit.Builder()
             .baseUrl(Helper.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
@@ -46,6 +45,6 @@ object ApiModule {
 
     @Singleton
     @Provides
-    fun providesILogSingApiService(@Named("auth")retrofit: Retrofit) = retrofit.create(ILogSingApiService::class.java)
+    fun providesILogSingApiService(@Named("auth") retrofit: Retrofit) = retrofit.create(ILogSingApiService::class.java)
 
 }

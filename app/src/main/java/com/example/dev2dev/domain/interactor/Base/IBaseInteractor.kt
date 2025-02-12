@@ -10,6 +10,6 @@ interface IBaseInteractor {
     suspend fun editProfile(userDataProfileDto: UserDataProfileDto): Response<UserDataProfileDomain>
 
     // Тестовое поле
-    suspend fun testRoad():Response<Unit>
+    suspend fun testRoad(): Response<Unit>
 
 }

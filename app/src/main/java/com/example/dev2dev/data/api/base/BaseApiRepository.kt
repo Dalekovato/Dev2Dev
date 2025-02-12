@@ -10,20 +10,19 @@ class BaseApiRepository @Inject constructor(
     private val iBaseService: IBaseService,
 ) {
 
-
-    suspend fun editProfile(userDataProfileDto: UserDataProfileDto): Response<UserDataProfileDomain>{
+    suspend fun editProfile(userDataProfileDto: UserDataProfileDto): Response<UserDataProfileDomain> {
 
         val response = iBaseService.editProfile(userDataProfileDto)
 
-        return  Response.success(
+        return Response.success(
             UserDataProfileMapper(
                 response.body() ?: UserDataProfileDto("Null")
             ).userProfile
         )
     }
 
-    suspend fun testRoad(): Response<Unit>{
-       return iBaseService.testRoad()
+    suspend fun testRoad(): Response<Unit> {
+        return iBaseService.testRoad()
     }
 
 }

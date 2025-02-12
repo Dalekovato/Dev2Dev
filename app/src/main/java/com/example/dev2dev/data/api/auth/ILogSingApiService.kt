@@ -2,8 +2,10 @@ package com.example.dev2dev.data.api.auth
 
 import com.example.dev2dev.data.api.dtoUser.ApiTokenDto
 import com.example.dev2dev.data.api.dtoUser.AuthUserDto
+import okhttp3.RequestBody
 import retrofit2.Response
 import retrofit2.http.Body
+import retrofit2.http.Header
 import retrofit2.http.POST
 
 interface ILogSingApiService {
@@ -18,7 +20,10 @@ interface ILogSingApiService {
     suspend fun logOut()
 
     @POST("/auth/refresh-token") //Обновление access-токена
-    suspend fun refreshToken(@Body refreshToken: String):Response<ApiTokenDto>
+    suspend fun refreshToken(
+        @Header("Authorization") accessToken: String,
+        @Body refreshToken: RequestBody,
+    ): Response<ApiTokenDto>
 
 }
 

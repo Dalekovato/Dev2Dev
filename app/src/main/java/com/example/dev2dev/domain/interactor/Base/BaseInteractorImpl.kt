@@ -7,14 +7,14 @@ import retrofit2.Response
 import javax.inject.Inject
 
 class BaseInteractorImpl @Inject constructor(
-    private val baseApiRepository : BaseApiRepository,
-): IBaseInteractor {
+    private val baseApiRepository: BaseApiRepository,
+) : IBaseInteractor {
 
     override suspend fun editProfile(userDataProfileDto: UserDataProfileDto): Response<UserDataProfileDomain> {
         return baseApiRepository.editProfile(userDataProfileDto)
     }
 
-    override suspend fun testRoad():Response<Unit> {
+    override suspend fun testRoad(): Response<Unit> {
         return baseApiRepository.testRoad()
     }
 

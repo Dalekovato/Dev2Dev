@@ -32,7 +32,7 @@ object AuthRepositoryModule {
 
     @Provides
     @Singleton
-    fun providesIBaseRepository(baseApiRepository: BaseApiRepository): IBaseInteractor{
+    fun providesIBaseRepository(baseApiRepository: BaseApiRepository): IBaseInteractor {
         return BaseInteractorImpl(baseApiRepository)
     }
 

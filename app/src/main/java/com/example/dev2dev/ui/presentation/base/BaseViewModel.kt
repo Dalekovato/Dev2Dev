@@ -9,10 +9,10 @@ import javax.inject.Inject
 
 @HiltViewModel
 class BaseViewModel @Inject constructor(
-    private val baseInteractor: IBaseInteractor
+    private val baseInteractor: IBaseInteractor,
 ) : ViewModel() {
 
-    fun testRoad(){
+    fun testRoad() {
         viewModelScope.launch {
             baseInteractor.testRoad()
         }
