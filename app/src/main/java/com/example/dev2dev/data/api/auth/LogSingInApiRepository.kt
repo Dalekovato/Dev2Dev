@@ -13,7 +13,7 @@ import javax.inject.Inject
 class LogSingInApiRepository @Inject constructor(
     private val iLogSingInApi: ILogSingApiService,
     private val localTokenRepository: ILocalTokenRepository,
-) : BaseApiResponse() {
+): BaseApiResponse() {
 
     suspend fun singUp(user: AuthUserDto): NetworkResult<Unit> {
 
@@ -37,5 +37,4 @@ class LogSingInApiRepository @Inject constructor(
     suspend fun refreshToken(accessToken: String, refreshToken: RequestBody): Response<ApiTokenDto> {
         return iLogSingInApi.refreshToken(accessToken, refreshToken)
     }
-
 }
