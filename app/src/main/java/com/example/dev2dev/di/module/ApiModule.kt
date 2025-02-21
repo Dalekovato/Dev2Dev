@@ -1,4 +1,4 @@
-package com.example.dev2dev.di.models
+package com.example.dev2dev.di.module
 
 import com.example.dev2dev.data.api.auth.ILogSingApiService
 import com.example.dev2dev.utils.Helper

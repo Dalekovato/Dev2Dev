@@ -1,7 +1,7 @@
-package com.example.dev2dev.domain.mapper
+package com.example.dev2dev.data.mapper
 
 import com.example.dev2dev.data.api.dtoUser.UserDataProfileDto
-import com.example.dev2dev.domain.model.UserDataProfileDomain
+import com.example.dev2dev.data.model.UserDataProfileDomain
 
 class UserDataProfileMapper(userDataProfileDto: UserDataProfileDto?) {
 

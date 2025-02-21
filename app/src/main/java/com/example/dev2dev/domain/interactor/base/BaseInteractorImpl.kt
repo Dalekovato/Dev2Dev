@@ -1,8 +1,8 @@
-package com.example.dev2dev.domain.interactor.Base
+package com.example.dev2dev.domain.interactor.base
 
 import com.example.dev2dev.data.api.dtoUser.UserDataProfileDto
 import com.example.dev2dev.data.api.base.BaseApiRepository
-import com.example.dev2dev.domain.model.UserDataProfileDomain
+import com.example.dev2dev.data.model.UserDataProfileDomain
 import retrofit2.Response
 import javax.inject.Inject
 

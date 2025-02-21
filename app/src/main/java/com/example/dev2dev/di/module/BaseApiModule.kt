@@ -1,4 +1,4 @@
-package com.example.dev2dev.di.models
+package com.example.dev2dev.di.module
 
 import android.text.TextUtils
 import android.util.Log
